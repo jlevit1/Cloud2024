@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Toy Detail</title>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+   <style>
+      body {
+         background-color: #ffffff;
+         font-family: Arial, sans-serif;
+         color: #000; /* Chữ màu đen */
+      }
+
+      .container {
+         background-color: #fff;
+         padding: 2rem;
+         border-radius: 10px;
+         box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+         margin-top: 50px;
+         max-width: 900px;
+      }
+
+      .text-dark {
+         font-weight: bold;
+         font-size: 1.5rem;
+         color: #000; /* Chữ màu đen */
+      }
+
+      .text-success {
+         font-weight: bold;
+         color: #28a745 !important; /* Giá màu xanh */
+         font-size: 1.5rem;
+         margin-top: 1rem;
+      }
+
+      .img-fluid {
+         max-height: 400px;
+         width: auto;
+         object-fit: contain;
+      }
+
+      .btn-back {
+         margin-top: 2rem;
+         font-size: 1.1rem;
+         color: #fff;
+         background-color: #000; /* Nút màu đen */
+         border-color: #000;
+         padding: 10px 20px;
+         border-radius: 5px;
+         transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+
+      .btn-back:hover {
+         background-color: #333;
+         text-decoration: none;
+         transform: scale(1.05);
+      }
+
+      .product-title {
+         font-size: 2rem;
+         color: #000; /* Chữ màu đen */
+         font-weight: bold;
+         margin-bottom: 1rem;
+      }
+
+      .quantity-control {
+         display: flex;
+         align-items: center;
+         margin-top: 1.5rem;
+      }
+
+      .quantity-control button {
+         font-size: 1.5rem;
+         padding: 5px 15px;
+         margin-right: 10px;
+         background-color: #000; /* Nút màu đen */
+         border: none;
+         color: #fff;
+         border-radius: 5px;
+         cursor: pointer;
+         transition: background-color 0.3s ease;
+      }
+
+      .quantity-control button:hover {
+         background-color: #333;
+      }
+
+      .quantity-display {
+         font-size: 1.5rem;
+         width: 50px;
+         text-align: center;
+         color: #000; /* Chữ màu đen */
+      }
+
+      .add-to-cart {
+         margin-top: 2rem;
+         background-color: #000; /* Nút màu đen */
+         color: #fff;
+         padding: 10px 20px;
+         border-radius: 5px;
+         font-size: 1.25rem;
+         border: none;
+         cursor: pointer;
+         transition: background-color 0.3s ease;
+      }
+
+      .add-to-cart:hover {
+         background-color: #333;
+      }
+   </style>
+</head>
+
+<body>
+
+   <div class="container">
+      <h1 class="text-dark text-center bg-light py-3 rounded">Product Detail</h1>
+      <div class="row mt-5">
+         <div class="col-md-6 text-center">
+            <img src="{{ toy.cover }}" class="img-fluid rounded" alt="{{ toy.title }}">
+         </div>
+         <div class="col-md-6 d-flex flex-column justify-content-center">
+            <h2 class="product-title">{{ toy.title }}</h2>
+            <span class="text-success">${{ toy.price }}</span>
+
+            <!-- Quantity Control -->
+            <div class="quantity-control">
+               <button id="decrease-btn">-</button>
+               <span id="quantity-display" class="quantity-display">1</span>
+               <button id="increase-btn">+</button>
+            </div>
+
+            <!-- Add to Cart Button -->
+            <button class="add-to-cart mt-4">Add to Cart</button>
+            <a href="/view" class="btn-back mt-4">Back to Shop</a>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      let quantity = 1;
+      const quantityDisplay = document.getElementById('quantity-display');
+      const increaseBtn = document.getElementById('increase-btn');
+      const decreaseBtn = document.getElementById('decrease-btn');
+
+      increaseBtn.addEventListener('click', function() {
+         quantity++;
+         quantityDisplay.textContent = quantity;
+      });
+
+      decreaseBtn.addEventListener('click', function() {
+         if (quantity > 1) {
+            quantity--;
+            quantityDisplay.textContent = quantity;
+         }
+      });
+   </script>
+</body>
+
+</html>
